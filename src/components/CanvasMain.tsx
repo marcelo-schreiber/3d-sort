@@ -1,23 +1,26 @@
 import { useState } from "react";
+// THREE components
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 // algorithms
-import shuffle from "../../utils/shuffle";
-import bubbleSort from "../../utils/bubblesort";
-import insertionSort from "../../utils/insertionsort";
-import selectionSort from "../../utils/selectionsort";
-import mergeSort from "../../utils/mergesort";
-import quickSort from "../../utils/quicksort";
-import findMaxValue from "../../utils/findMaxValue";
-import Box from "./box";
+import bubbleSort from "../../utils/sort/bubblesort";
+import insertionSort from "../../utils/sort/insertionsort";
+import selectionSort from "../../utils/sort/selectionsort";
+import mergeSort from "../../utils/sort/mergesort";
+import quickSort from "../../utils/sort/quicksort";
 
+import shuffle from "../../utils/shuffle";
+import findMaxValue from "../../utils/findMaxValue";
+
+// my components
+import Box from "./box";
 import {
   BsShuffle,
   BsForward,
   BsSortDownAlt,
-  BsPlus,
-  BsFileMinus,
+  BsPatchPlus,
+  BsPatchMinus,
 } from "react-icons/bs";
 
 function CanvasMain() {
@@ -88,7 +91,7 @@ function CanvasMain() {
       >
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        {boxes.arr.map((h: number, idx: number) => (
+        {array.map((h: number, idx: number) => (
           <Box
             height={h}
             key={`${idx} + ${h}`}
@@ -104,18 +107,22 @@ function CanvasMain() {
         />
       </Canvas>
       <nav>
-        <h2 className="text-gray-800 font-semibold text-2xl my-8 flex items-center justify-center">
-          Algoritmo atual: {currentAlg} <BsSortDownAlt className="ml-2" />
-        </h2>
+        <label
+          htmlFor="selectAlg"
+          className="text-gray-800 font-semibold text-2xl my-8 flex items-center justify-center"
+        >
+          <BsSortDownAlt className="mr-2" /> Escolha de algoritmo:
+        </label>
         <select
-          className="flex mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 "
+          id="selectAlg"
+          className="flex mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4 "
           onChange={handleChange}
         >
-          <option value={"Bubble sort"}>Bubble sort</option>
-          <option value={"Insertion sort"}>Insertion sort</option>
-          <option value={"Selection sort"}>Selection sort</option>
-          <option value={"Merge sort"}>Merge sort</option>
-          <option value={"Quick sort"}>Quick sort</option>
+          <option value="Bubble sort">Bubble sort</option>
+          <option value="Insertion sort">Insertion sort</option>
+          <option value="Selection sort">Selection sort</option>
+          <option value="Merge sort">Merge sort</option>
+          <option value="Quick sort">Quick sort</option>
         </select>
         <div className="flex w-full items-center justify-around absolute top-5">
           <button
@@ -124,21 +131,21 @@ function CanvasMain() {
           >
             Embaralhar <BsShuffle className="ml-2" />
           </button>
-          <div>
-            <button
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
-              onClick={addItem}
-            >
-              Add item <BsPlus className="ml-2" />
-            </button>
-            <button
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
-              onClick={removeItem}
-              disabled={array.length <= 5}
-            >
-              Remove item <BsFileMinus className="ml-2" />
-            </button>
-          </div>
+          <button
+            className="bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2  rounded-l flex items-center"
+            onClick={removeItem}
+            disabled={array.length <= 5}
+          >
+            Remover
+            <BsPatchMinus className="ml-2" />
+          </button>
+          <button
+            className="bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2  rounded-l flex items-center"
+            onClick={addItem}
+          >
+            Adicionar <BsPatchPlus className="ml-2" />
+          </button>
+
           <button
             onClick={sort}
             className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
