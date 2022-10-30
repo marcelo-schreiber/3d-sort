@@ -28,22 +28,7 @@ function CanvasMain() {
   const sort = () => !sortingState.done && setSortingState(generator.next());
 
   let array = sortingState.value.arr;
-
-  const addItem = () => {
-    array = [...array, array.length + 1];
-
-    setAlgorithm();
-  };
-
-  const removeItem = () => {
-    if (array.length <= 5) {
-      return;
-    }
-
-    array.splice(findMaxValue(array), 1);
-
-    setAlgorithm();
-  };
+  const boxes = sortingState.value;
 
   const setAlgorithm = () => {
     let newGenerator;
@@ -70,19 +55,30 @@ function CanvasMain() {
     setSortingState(newGenerator.next());
   };
 
+  const addItem = () => {
+    array = [...array, array.length + 1];
+
+    setAlgorithm();
+  };
+
+  const removeItem = () => {
+    if (array.length <= 5) {
+      return;
+    }
+
+    array.splice(findMaxValue(array), 1);
+    setAlgorithm();
+  };
+
   const randomize = () => {
     array = shuffle(array);
-
     setAlgorithm();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrentAlg(e.target.value);
-
     setAlgorithm();
   };
-
-  const boxes = sortingState.value;
 
   return (
     <div style={{ height: "62vh", width: "100%" }}>
