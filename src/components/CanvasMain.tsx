@@ -154,6 +154,9 @@ function CanvasMain() {
           </button>
         </div>
       </nav>
+      <h1 className="text-lg text-gray-800 text-center mt-6">
+        O vetor possui <b>{array.length}</b> elementos.
+      </h1>
     </div>
   );
 }
