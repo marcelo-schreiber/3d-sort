@@ -9,12 +9,16 @@ import insertionSort from "../../utils/insertionsort";
 import selectionSort from "../../utils/selectionsort";
 import mergeSort from "../../utils/mergesort";
 import quickSort from "../../utils/quicksort";
-
+import findMaxValue from "../../utils/findMaxValue";
 import Box from "./box";
 
-import { BsShuffle, BsForward, BsSortDownAlt } from "react-icons/bs";
-
-// colocar numero de elementos variavel
+import {
+  BsShuffle,
+  BsForward,
+  BsSortDownAlt,
+  BsPlus,
+  BsFileMinus,
+} from "react-icons/bs";
 
 function CanvasMain() {
   const [generator, setGenerator] = useState(bubbleSort([1, 2, 3, 4, 5, 6, 7]));
@@ -23,24 +27,42 @@ function CanvasMain() {
 
   const sort = () => !sortingState.done && setSortingState(generator.next());
 
+  let array = sortingState.value.arr;
+
+  const addItem = () => {
+    array = [...array, array.length + 1];
+
+    setAlgorithm();
+  };
+
+  const removeItem = () => {
+    if (array.length <= 5) {
+      return;
+    }
+
+    array.splice(findMaxValue(array), 1);
+
+    setAlgorithm();
+  };
+
   const setAlgorithm = () => {
     let newGenerator;
 
     switch (currentAlg) {
       case "Insertion sort":
-        newGenerator = insertionSort(sortingState.value.arr);
+        newGenerator = insertionSort(array);
         break;
       case "Selection sort":
-        newGenerator = selectionSort(sortingState.value.arr);
+        newGenerator = selectionSort(array);
         break;
       case "Merge sort":
-        newGenerator = mergeSort(sortingState.value.arr);
+        newGenerator = mergeSort(array);
         break;
       case "Quick sort":
-        newGenerator = quickSort(sortingState.value.arr);
+        newGenerator = quickSort(array);
         break;
       default:
-        newGenerator = bubbleSort(sortingState.value.arr);
+        newGenerator = bubbleSort(array);
         break;
     }
 
@@ -49,7 +71,7 @@ function CanvasMain() {
   };
 
   const randomize = () => {
-    sortingState.value.arr = shuffle(sortingState.value.arr);
+    array = shuffle(array);
 
     setAlgorithm();
   };
@@ -74,7 +96,7 @@ function CanvasMain() {
           <Box
             height={h}
             key={`${idx} + ${h}`}
-            position={[-7 + 2 * idx, 0, 0]}
+            position={[-array.length + 2 * idx, 0, 0]}
             isMoved={boxes.idx === idx || boxes?.idx2 === idx}
             isPivot={boxes.pivot === idx}
           />
@@ -106,6 +128,21 @@ function CanvasMain() {
           >
             Embaralhar <BsShuffle className="ml-2" />
           </button>
+          <div>
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
+              onClick={addItem}
+            >
+              Add item <BsPlus className="ml-2" />
+            </button>
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
+              onClick={removeItem}
+              disabled={array.length <= 5}
+            >
+              Remove item <BsFileMinus className="ml-2" />
+            </button>
+          </div>
           <button
             onClick={sort}
             className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
