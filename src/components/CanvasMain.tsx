@@ -66,7 +66,7 @@ function CanvasMain() {
   };
 
   const setAlgorithm = () => {
-    let newGenerator;
+    let newGenerator = bubbleSort(array);
 
     switch (currentAlg) {
       case "Insertion sort":
@@ -80,9 +80,6 @@ function CanvasMain() {
         break;
       case "Quick sort":
         newGenerator = quickSort(array);
-        break;
-      default:
-        newGenerator = bubbleSort(array);
         break;
     }
 
