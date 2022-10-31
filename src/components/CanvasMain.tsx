@@ -21,21 +21,49 @@ import {
   BsSortDownAlt,
   BsPatchPlus,
   BsPatchMinus,
+  BsPlay,
+  BsPause,
+  BsSkipForward,
+  BsSkipBackward,
 } from "react-icons/bs";
 
+const acceleration = 150;
+
 function CanvasMain() {
-  const [generator, setGenerator] = useState(bubbleSort([1, 2, 3, 4, 5, 6, 7]));
+  const [generator, setGenerator] = useState(
+    bubbleSort(shuffle([1, 2, 3, 4, 5, 6, 7]))
+  );
   const [sortingState, setSortingState] = useState(() => generator.next());
   const [currentAlg, setCurrentAlg] = useState("Bubble sort");
+  const [play, setPlay] = useState(false);
+  const [delay, setDelay] = useState(1000);
 
   const sort = () => !sortingState.done && setSortingState(generator.next());
 
-  let array = sortingState.value.arr;
   const boxes = sortingState.value;
+  let { arr: array } = sortingState.value;
 
   useEffect(() => {
     setAlgorithm();
   }, [currentAlg]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => sort(), delay); // 800ms delay (0.8s)
+
+    if (!play) clearTimeout(timer);
+
+    return () => clearTimeout(timer);
+  }, [sortingState, play]);
+
+  const speedUp = () => {
+    if (delay <= acceleration) return;
+    setDelay((prev) => prev - acceleration);
+  };
+
+  const slowDown = () => {
+    if (delay >= 2000) return; // 2 seconds will be the slowest delay possible
+    setDelay((prev) => prev + acceleration);
+  };
 
   const setAlgorithm = () => {
     let newGenerator;
@@ -104,15 +132,52 @@ function CanvasMain() {
         />
       </Canvas>
       <nav>
+        <h2 className="text-gray-800 font-semibold text-2xl my-8 flex items-center justify-center">
+          Velocidade: {Number((1 / delay) * 1000).toFixed(2)}
+        </h2>
+        <div className="w-full flex justify-center align-center">
+          <button
+            onClick={slowDown}
+            disabled={delay >= 2000}
+            className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l ${
+              delay >= 2000 && "bg-gray-200"
+            }`}
+          >
+            <BsSkipBackward />
+          </button>
+          <button
+            onClick={() => setPlay((prev) => !prev)}
+            className="bg-gray-300 hover:bg-gray-400 mx-4 text-gray-800 font-bold py-2 px-4 rounded-l "
+          >
+            {play ? (
+              <span className="flex items-center justify-center">
+                Pausar <BsPause className="ml-2" />
+              </span>
+            ) : (
+              <span className="flex items-center justify-center">
+                Iniciar <BsPlay className="ml-2" />
+              </span>
+            )}
+          </button>
+          <button
+            onClick={speedUp}
+            disabled={delay <= acceleration}
+            className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l ${
+              delay <= acceleration && "bg-gray-200"
+            }`}
+          >
+            <BsSkipForward />
+          </button>
+        </div>
         <label
           htmlFor="selectAlg"
           className="text-gray-800 font-semibold text-2xl my-8 flex items-center justify-center"
         >
-          <BsSortDownAlt className="mr-2" /> Escolha de algoritmo:
+          <BsSortDownAlt className="mr-2" /> Escolha o algoritmo:
         </label>
         <select
           id="selectAlg"
-          className="flex mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4 "
+          className="flex mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
             setCurrentAlg(e.target.value)
           }
