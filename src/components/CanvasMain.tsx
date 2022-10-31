@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // THREE components
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -33,6 +33,10 @@ function CanvasMain() {
   let array = sortingState.value.arr;
   const boxes = sortingState.value;
 
+  useEffect(() => {
+    setAlgorithm();
+  }, [currentAlg]);
+
   const setAlgorithm = () => {
     let newGenerator;
 
@@ -65,9 +69,7 @@ function CanvasMain() {
   };
 
   const removeItem = () => {
-    if (array.length <= 5) {
-      return;
-    }
+    if (array.length <= 5) return;
 
     array.splice(findMaxValue(array), 1);
     setAlgorithm();
@@ -75,11 +77,6 @@ function CanvasMain() {
 
   const randomize = () => {
     array = shuffle(array);
-    setAlgorithm();
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentAlg(e.target.value);
     setAlgorithm();
   };
 
@@ -116,7 +113,9 @@ function CanvasMain() {
         <select
           id="selectAlg"
           className="flex mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4 "
-          onChange={handleChange}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            setCurrentAlg(e.target.value)
+          }
         >
           <option value="Bubble sort">Bubble sort</option>
           <option value="Insertion sort">Insertion sort</option>
