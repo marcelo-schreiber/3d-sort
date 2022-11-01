@@ -142,7 +142,7 @@ function CanvasMain() {
           </button>
           <button
             onClick={() => setPlay((prev) => !prev)}
-            className="bg-gray-300 hover:bg-gray-400 mx-4 text-gray-800 font-bold py-2 px-4 rounded-l "
+            className="bg-gray-300 hover:bg-gray-400 mx-4 w-28 text-gray-800 font-bold py-2 px-4 rounded-l "
           >
             {play ? (
               <span className="flex items-center justify-center">
