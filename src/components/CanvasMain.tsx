@@ -27,7 +27,7 @@ import {
   BsSkipBackward,
 } from "react-icons/bs";
 
-const acceleration = 50;
+const acceleration = 150;
 
 function CanvasMain() {
   const [generator, setGenerator] = useState(
@@ -44,7 +44,7 @@ function CanvasMain() {
   let { arr: array } = sortingState.value;
 
   useEffect(() => {
-    const timer = setTimeout(() => sort(), delay); // 800ms delay (0.8s)
+    const timer = setTimeout(() => sort(), delay); // default 1000ms delay
 
     if (!play) clearTimeout(timer);
     if (sortingState.done) setPlay(false);
@@ -128,14 +128,14 @@ function CanvasMain() {
       </Canvas>
       <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
         <button
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
+          className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l flex items-center"
           onClick={randomize}
         >
           Embaralhar <BsShuffle className="ml-2" />
         </button>
         <button
-          className={`bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2 rounded-l flex items-center ${
-            array.length <= 5 && "bg-gray-200"
+          className={`bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded-l flex items-center ${
+            array.length <= 5 && "bg-slate-200"
           }`}
           onClick={removeItem}
           disabled={array.length <= 5}
@@ -144,7 +144,7 @@ function CanvasMain() {
           <BsPatchMinus className="ml-2" />
         </button>
         <button
-          className="bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2 rounded-l flex items-center"
+          className="bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded-l flex items-center"
           onClick={addItem}
         >
           Adicionar <BsPatchPlus className="ml-2" />
@@ -153,30 +153,30 @@ function CanvasMain() {
         <button
           onClick={sort}
           disabled={sortingState.done}
-          className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center ${
-            sortingState.done && "bg-gray-200"
+          className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l flex items-center ${
+            sortingState.done && "bg-slate-200"
           }`}
         >
           Próximo passo <BsForward className="ml-2" />
         </button>
       </div>
       <nav>
-        <h2 className="text-gray-800 font-semibold text-2xl my-8 flex items-center justify-center">
+        <h2 className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center">
           Velocidade: {Number((1 / delay) * 1000).toFixed(2)}
         </h2>
         <div className="w-full flex justify-center align-center">
           <button
             onClick={slowDown}
             disabled={delay >= 2000}
-            className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l ${
-              delay >= 2000 && "bg-gray-200"
+            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l ${
+              delay >= 2000 && "bg-slate-200"
             }`}
           >
             <BsSkipBackward />
           </button>
           <button
             onClick={() => setPlay((prev) => !prev)}
-            className="bg-gray-300 hover:bg-gray-400 mx-4 w-28 text-gray-800 font-bold py-2 px-4 rounded-l "
+            className="bg-slate-300 hover:bg-slate-400 mx-4 w-28 text-slate-800 font-bold py-2 px-4 rounded-l "
           >
             {play ? (
               <span className="flex items-center justify-center">
@@ -191,8 +191,8 @@ function CanvasMain() {
           <button
             onClick={speedUp}
             disabled={delay <= acceleration}
-            className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l ${
-              delay <= acceleration && "bg-gray-200"
+            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l ${
+              delay <= acceleration && "bg-slate-200"
             }`}
           >
             <BsSkipForward />
@@ -200,13 +200,13 @@ function CanvasMain() {
         </div>
         <label
           htmlFor="selectAlg"
-          className="text-gray-800 font-semibold text-2xl my-8 flex items-center justify-center"
+          className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center"
         >
           <BsSortDownAlt className="mr-2" /> Escolha o algoritmo:
         </label>
         <select
           id="selectAlg"
-          className="flex mx-auto bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4"
+          className="flex mx-auto bg-slate-50 border border-slate-300 text-slate-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
             setCurrentAlg(e.target.value)
           }
@@ -218,7 +218,7 @@ function CanvasMain() {
           <option value="Quick sort">Quick sort</option>
         </select>
       </nav>
-      <h1 className="text-lg text-gray-800 text-center mt-6">
+      <h1 className="text-lg text-slate-800 text-center mt-6">
         O vetor possui <b>{array.length}</b> elementos.
       </h1>
     </div>

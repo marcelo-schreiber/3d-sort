@@ -11,5 +11,5 @@
 }
 
 body {
-  background-color: #eae8e8f2;
+  @apply bg-slate-100;
 }
