@@ -47,7 +47,7 @@ function CanvasMain() {
     const timer = setTimeout(() => sort(), delay); // 800ms delay (0.8s)
 
     if (!play) clearTimeout(timer);
-
+    if (sortingState.done) setPlay(false);
     return () => clearTimeout(timer);
   }, [sortingState, play]);
 
@@ -105,6 +105,40 @@ function CanvasMain() {
 
   return (
     <div style={{ height: "62vh", width: "100%" }}>
+      <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
+        <button
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
+          onClick={randomize}
+        >
+          Embaralhar <BsShuffle className="ml-2" />
+        </button>
+        <button
+          className={`bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2 rounded-l flex items-center ${
+            array.length <= 5 && "bg-gray-200"
+          }`}
+          onClick={removeItem}
+          disabled={array.length <= 5}
+        >
+          Remover
+          <BsPatchMinus className="ml-2" />
+        </button>
+        <button
+          className="bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2 rounded-l flex items-center"
+          onClick={addItem}
+        >
+          Adicionar <BsPatchPlus className="ml-2" />
+        </button>
+
+        <button
+          onClick={sort}
+          disabled={sortingState.done}
+          className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center ${
+            sortingState.done && "bg-gray-200"
+          }`}
+        >
+          Próximo passo <BsForward className="ml-2" />
+        </button>
+      </div>
       <Canvas
         camera={{ fov: 90, position: [0, 0, 12] }}
         className="cursor-grab"
@@ -183,35 +217,6 @@ function CanvasMain() {
           <option value="Merge sort">Merge sort</option>
           <option value="Quick sort">Quick sort</option>
         </select>
-        <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
-          <button
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
-            onClick={randomize}
-          >
-            Embaralhar <BsShuffle className="ml-2" />
-          </button>
-          <button
-            className="bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2  rounded-l flex items-center"
-            onClick={removeItem}
-            disabled={array.length <= 5}
-          >
-            Remover
-            <BsPatchMinus className="ml-2" />
-          </button>
-          <button
-            className="bg-gray-300 px-4 hover:bg-gray-400 text-gray-800 font-bold py-2  rounded-l flex items-center"
-            onClick={addItem}
-          >
-            Adicionar <BsPatchPlus className="ml-2" />
-          </button>
-
-          <button
-            onClick={sort}
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
-          >
-            Próximo passo <BsForward className="ml-2" />
-          </button>
-        </div>
       </nav>
       <h1 className="text-lg text-gray-800 text-center mt-6">
         O vetor possui <b>{array.length}</b> elementos.
