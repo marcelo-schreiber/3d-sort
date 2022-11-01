@@ -44,10 +44,6 @@ function CanvasMain() {
   let { arr: array } = sortingState.value;
 
   useEffect(() => {
-    setAlgorithm();
-  }, [currentAlg]);
-
-  useEffect(() => {
     const timer = setTimeout(() => sort(), delay); // 800ms delay (0.8s)
 
     if (!play) clearTimeout(timer);
@@ -87,6 +83,8 @@ function CanvasMain() {
     setSortingState(newGenerator.next());
   };
 
+  useEffect(setAlgorithm, [currentAlg]);
+
   const addItem = () => {
     array = [...array, array.length + 1];
 
@@ -108,7 +106,7 @@ function CanvasMain() {
   return (
     <div style={{ height: "62vh", width: "100%" }}>
       <Canvas
-        camera={{ fov: 70, position: [0, 0, 12] }}
+        camera={{ fov: 90, position: [0, 0, 12] }}
         className="cursor-grab"
       >
         <ambientLight />
@@ -185,7 +183,7 @@ function CanvasMain() {
           <option value="Merge sort">Merge sort</option>
           <option value="Quick sort">Quick sort</option>
         </select>
-        <div className="flex w-full items-center justify-around absolute top-5">
+        <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
           <button
             className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
             onClick={randomize}
