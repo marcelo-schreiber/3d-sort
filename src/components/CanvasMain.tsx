@@ -105,6 +105,27 @@ function CanvasMain() {
 
   return (
     <div style={{ height: "62vh", width: "100%" }}>
+      <Canvas
+        camera={{ fov: 90, position: [0, 0, 12] }}
+        className="cursor-grab"
+      >
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} />
+        {array.map((h: number, idx: number) => (
+          <Box
+            height={h}
+            key={`${idx} + ${h}`}
+            position={[-array.length + 2 * idx, 0, 0]}
+            isMoved={boxes.idx === idx || boxes?.idx2 === idx}
+            isPivot={boxes.pivot === idx}
+          />
+        ))}
+        <OrbitControls
+          enablePan={false}
+          enableZoom={true}
+          rotation={[0, 0, 0]}
+        />
+      </Canvas>
       <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
         <button
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l flex items-center"
@@ -139,27 +160,6 @@ function CanvasMain() {
           Próximo passo <BsForward className="ml-2" />
         </button>
       </div>
-      <Canvas
-        camera={{ fov: 90, position: [0, 0, 12] }}
-        className="cursor-grab"
-      >
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        {array.map((h: number, idx: number) => (
-          <Box
-            height={h}
-            key={`${idx} + ${h}`}
-            position={[-array.length + 2 * idx, 0, 0]}
-            isMoved={boxes.idx === idx || boxes?.idx2 === idx}
-            isPivot={boxes.pivot === idx}
-          />
-        ))}
-        <OrbitControls
-          enablePan={false}
-          enableZoom={true}
-          rotation={[0, 0, 0]}
-        />
-      </Canvas>
       <nav>
         <h2 className="text-gray-800 font-semibold text-2xl my-8 flex items-center justify-center">
           Velocidade: {Number((1 / delay) * 1000).toFixed(2)}
