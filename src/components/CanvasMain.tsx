@@ -27,7 +27,7 @@ import {
   BsSkipBackward,
 } from "react-icons/bs";
 
-const acceleration = 150;
+const acceleration = 50;
 
 function CanvasMain() {
   const [generator, setGenerator] = useState(
@@ -52,7 +52,7 @@ function CanvasMain() {
   }, [sortingState, play]);
 
   const speedUp = () => {
-    if (delay <= acceleration) return;
+    if (delay <= acceleration) return; // fastest possible delay -= acc => 0 (0ms delay impossible)
     setDelay((prev) => prev - acceleration);
   };
 
