@@ -43,10 +43,10 @@ export default defineConfig({
       },
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
       manifest: {
-        name: "3d sort | Visualize ordenação em 3d",
-        short_name: "3dsort",
+        name: "3d sort | ordenação em 3d",
+        short_name: "3d sort",
         theme_color: "#4c2e71",
-        background_color: "#F1F9F5",
+        background_color: "#4c2e71",
         icons: [
           {
             src: "/assets/icon-72x72.png",
