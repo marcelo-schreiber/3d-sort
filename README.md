@@ -45,7 +45,6 @@ Para facilitar o entendimento no funcionamento de algoritmos de ordenação, o u
 <!-- BUILT WITH -->
 ### Tecnologias Utilizadas
 
-Server
 * [React](https://reactjs.org/)
 * [Typescript](https://www.typescriptlang.org/)
 * [ThreeJS](https://threejs.org/)
