@@ -1,10 +1,10 @@
 <br />
 <p align="center">
-
+    <img src="https://cdn.discordapp.com/attachments/685226653764550671/1037885855748079726/screen-recording.gif" alt="Demonstration" width="440px">
   <p align="center">
     Um PWA de algoritmos de ordenação em 3d.
       <a href="https://www.3dsort.com.br/" target="_blank" rel="noreferrer">
-    <img src="https://cdn.discordapp.com/attachments/685226653764550671/1037885855748079726/screen-recording.gif" alt="Demonstration" width="440px">
+
   </a>
     <br />
     <a href="https://www.3dsort.com.br/" target="_blank" rel="noreferrer"><strong>Website em PWA »</strong></a>
