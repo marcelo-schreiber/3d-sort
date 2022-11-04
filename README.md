@@ -71,9 +71,9 @@ A página reinicia de acordo com as alterações.
 Contribuições são o que faz a comunidade open source ser incrível como ela é. Qualquer contribuição que você faz são **muito bem-vindas**.
 
 1. Fork o Projeto
-2. Crie uma branch (`git checkout -b feature/featureIncrivel`)
-3. Commit suas alterações (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a Branch (`git push origin feature/featureIncrivel`)
+2. Crie uma branch (`git checkout -b feature`)
+3. Commit suas alterações (`git commit -m 'mensagem sobre a feature'`)
+4. Push para a Branch (`git push origin feature`)
 5. Faça um Pull Request
 
 ## Licença
