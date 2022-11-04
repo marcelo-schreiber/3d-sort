@@ -51,7 +51,7 @@ Para facilitar o entendimento no funcionamento de algoritmos de ordenação, o u
 * [ThreeFiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) by poimandres
 * [Vite](https://vitejs.dev/)
 * [Vite-PWA](https://vite-pwa-org.netlify.app/)
-* [React-icons](https://react-icons.github.io/)
+* [React-icons](https://react-icons.github.io/react-icons/)
 
 <!-- GETTING STARTED -->
 ## Utilizando
