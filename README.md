@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-    <img src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmRWN5SjHrkhhA9damKD2OcXC2VWwTk4fWJfTrOZ9PcekbP7WO7NMfeLjHQI-Up3yVJJKfw044QTnlImUKO2FabM7rkEhA=w1920-h947" alt="Demonstration" width="550px">
+    <img src="https://cdn.discordapp.com/attachments/685226653764550671/1037925934344445962/screen-recording.gif" alt="Demonstration" width="550px">
   <p align="center">
     Um PWA de algoritmos de ordenação em 3d.
       <a href="https://www.3dsort.com.br/" target="_blank" rel="noreferrer">
