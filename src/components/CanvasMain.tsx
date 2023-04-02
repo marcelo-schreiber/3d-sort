@@ -8,6 +8,7 @@ import bubbleSort from "../../utils/sort/bubblesort";
 import insertionSort from "../../utils/sort/insertionsort";
 import selectionSort from "../../utils/sort/selectionsort";
 import mergeSort from "../../utils/sort/mergesort";
+import heapSort from "../../utils/sort/heapsort";
 import quickSort from "../../utils/sort/quicksort";
 
 import shuffle from "../../utils/shuffle";
@@ -76,6 +77,10 @@ function CanvasMain() {
         break;
       case "Quick sort":
         newGenerator = quickSort(array);
+        break;
+      case "Heap sort":
+        console.log("heap sort");
+        newGenerator = heapSort(array);
         break;
     }
 
@@ -215,6 +220,7 @@ function CanvasMain() {
           <option value="Insertion sort">Insertion sort</option>
           <option value="Selection sort">Selection sort</option>
           <option value="Merge sort">Merge sort</option>
+          <option value="Heap sort">Heap sort</option>
           <option value="Quick sort">Quick sort</option>
         </select>
       </nav>
