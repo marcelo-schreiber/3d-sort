@@ -1,13 +1,15 @@
 export default function* insertionSort(arr: number[]) {
-  let length = arr.length;
+  const length = arr.length;
+
   for (let i = 1; i < length; i++) {
-    let key = arr[i];
+    const key = arr[i];
     let j = i - 1;
+
     yield { arr: arr, pivot: i, idx: j };
 
     while (j >= 0 && arr[j] > key) {
       arr[j + 1] = arr[j];
-      j = j - 1;
+      j--;
       yield { arr: arr, pivot: i, idx: j };
     }
     arr[j + 1] = key;
