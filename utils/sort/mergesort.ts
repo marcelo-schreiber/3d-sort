@@ -61,5 +61,5 @@ export function* merge(
   for (let k = 0; k < sorted.length; k++) {
     arr[i + k] = sorted[k];
   }
-  return { arr: arr };
+  return { arr };
 }
