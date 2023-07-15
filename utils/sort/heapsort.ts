@@ -13,7 +13,7 @@ function maxHeapify(heap: number[], size: number) {
     }
 
     if (largest !== i) {
-      [heap[i], heap[largest]] = [heap[largest], heap[i]];
+      [heap[i], heap[largest]] = [heap[largest], heap[i]]; // swap
       maxHeapify(heap, size);
     }
   }
@@ -36,7 +36,7 @@ export default function* heapSort(heap: number[]) {
     [heap[0], heap[i]] = [heap[i], heap[0]]; // swap
 
     yield { arr: heap, idx: i, pivot: -1 };
-    heap = makeMaxHeap(heap, i);
+    makeMaxHeap(heap, i);
     yield { arr: heap, idx: i, pivot: -1 };
   }
 
