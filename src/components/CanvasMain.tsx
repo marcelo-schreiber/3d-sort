@@ -131,6 +131,9 @@ function CanvasMain() {
           rotation={[0, 0, 0]}
         />
       </Canvas>
+      <div className="text-slate-800 text-lg text-center">
+        <code>{JSON.stringify(array, null, 2)}</code>
+      </div>
       <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
         <button
           className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l flex items-center"
