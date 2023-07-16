@@ -1,0 +1,11 @@
+{
+  "velocity": "Velocity",
+  "choose_an_algorithm": "Choose an algorithm:",
+  "array_prefix": "The array has ",
+  "array_suffix": " elements",
+  "shuffle": "Shuffle",
+  "start": "Start",
+  "remove": "Remove",
+  "add": "Add",
+  "next_step": "Next step"
+}

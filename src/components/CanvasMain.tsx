@@ -28,6 +28,10 @@ import {
   BsSkipBackward,
 } from "react-icons/bs";
 
+// language
+import en from "../../languages/en.json";
+import pt from "../../languages/pt-BR.json";
+
 const acceleration = 50;
 
 function CanvasMain() {
@@ -40,6 +44,9 @@ function CanvasMain() {
   const [delay, setDelay] = useState(1000);
 
   const sort = () => !sortingState.done && setSortingState(generator.next());
+
+  const language = navigator.language || "en";
+  const langJson = language === "pt-BR" ? pt : en;
 
   const boxes = sortingState.value;
   let { arr: array } = sortingState.value;
@@ -139,7 +146,7 @@ function CanvasMain() {
           className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l flex items-center"
           onClick={randomize}
         >
-          Embaralhar <BsShuffle className="ml-2" />
+          {langJson.shuffle} <BsShuffle className="ml-2" />
         </button>
         <button
           className={`bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded-l flex items-center ${
@@ -148,14 +155,14 @@ function CanvasMain() {
           onClick={removeItem}
           disabled={array.length <= 5}
         >
-          Remover
+          {langJson.remove}
           <BsPatchMinus className="ml-2" />
         </button>
         <button
           className="bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded-l flex items-center"
           onClick={addItem}
         >
-          Adicionar <BsPatchPlus className="ml-2" />
+          {langJson.add} <BsPatchPlus className="ml-2" />
         </button>
 
         <button
@@ -165,12 +172,13 @@ function CanvasMain() {
             sortingState.done && "bg-slate-200"
           }`}
         >
-          Próximo passo <BsForward className="ml-2" />
+          {langJson.next_step}
+          <BsForward className="ml-2" />
         </button>
       </div>
       <nav>
         <h2 className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center">
-          Velocidade: {Number((1 / delay) * 1000).toFixed(2)}
+          {langJson.velocity}: {Number((1 / delay) * 1000).toFixed(2)}
         </h2>
         <div className="w-full flex justify-center align-center">
           <button
@@ -192,7 +200,7 @@ function CanvasMain() {
               </span>
             ) : (
               <span className="flex items-center justify-center">
-                Iniciar <BsPlay className="ml-2" />
+                {langJson.start} <BsPlay className="ml-2" />
               </span>
             )}
           </button>
@@ -210,7 +218,7 @@ function CanvasMain() {
           htmlFor="selectAlg"
           className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center"
         >
-          <BsSortDownAlt className="mr-2" /> Escolha o algoritmo:
+          <BsSortDownAlt className="mr-2" /> {langJson.choose_an_algorithm}
         </label>
         <select
           id="selectAlg"
@@ -228,7 +236,7 @@ function CanvasMain() {
         </select>
       </nav>
       <h1 className="text-lg text-slate-800 text-center mt-6">
-        O vetor possui <b>{array.length}</b> elementos.
+        {langJson.array_prefix} <b>{array.length}</b> {langJson.array_suffix}
       </h1>
     </div>
   );

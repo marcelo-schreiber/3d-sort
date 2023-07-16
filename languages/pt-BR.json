@@ -1,0 +1,11 @@
+{
+  "velocity": "Velocidade",
+  "choose_an_algorithm": "Escolha um algoritmo:",
+  "array_prefix": "O vetor tem ",
+  "array_suffix": " elementos",
+  "shuffle": "Embaralhar",
+  "start": "Iniciar",
+  "remove": "Remover",
+  "add": "Adicionar",
+  "next_step": "Próximo passo"
+}
