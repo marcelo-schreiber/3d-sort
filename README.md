@@ -48,7 +48,7 @@ Para facilitar o entendimento no funcionamento de algoritmos de ordenação, o u
 * [React](https://reactjs.org/)
 * [Typescript](https://www.typescriptlang.org/)
 * [ThreeJS](https://threejs.org/)
-* [ThreeFiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) by poimandres
+* [ThreeFiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) by [poimandres](https://github.com/pmndrs)
 * [Vite](https://vitejs.dev/)
 * [Vite-PWA](https://vite-pwa-org.netlify.app/)
 * [React-icons](https://react-icons.github.io/react-icons/)
