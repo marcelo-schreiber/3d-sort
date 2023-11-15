@@ -7,7 +7,7 @@
 
   </a>
     <br />
-    <a href="https://3dsort.marcelo-schreiber.com.br/" target="_blank" rel="noreferrer"><strong>Website em PWA »</strong></a>
+    <a href="https://3dsort.marcelo-schreiber.com/" target="_blank" rel="noreferrer"><strong>Website em PWA »</strong></a>
     <br />
     <br />
     <a href="#getting-started">Instruções</a>
