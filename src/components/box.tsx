@@ -1,15 +1,15 @@
 import * as THREE from "three";
 
 import { useRef } from "react";
-import { MeshProps, useFrame } from "@react-three/fiber";
+import { ThreeElements, useFrame } from "@react-three/fiber";
 
-interface BoxProps extends MeshProps {
+interface BoxProps {
   height: number;
   isMoved: boolean;
   isPivot: boolean;
-}
+};
 
-export default function Box(props: BoxProps) {
+export default function Box(props: ThreeElements['mesh'] & BoxProps) {
   const meshRef = useRef<THREE.Mesh>(null!);
 
   useFrame((_, __) => {

@@ -135,7 +135,6 @@ function CanvasMain() {
         <OrbitControls
           enablePan={false}
           enableZoom={true}
-          rotation={[0, 0, 0]}
         />
       </Canvas>
       <div className="text-slate-800 text-lg text-center">
