@@ -14,13 +14,16 @@ export default function Box(props: ThreeElements['mesh'] & BoxProps) {
 
   useFrame((_, __) => {
     meshRef.current.rotation.y += 0.01;
-    if (meshRef.current.position.y >= -4 && props.isMoved) {
-      meshRef.current.position.y -= 0.1;
-      meshRef.current.position.z -= 0.1;
-    } else if (!props.isMoved && meshRef.current.position.y <= 0) {
-      meshRef.current.position.y += 0.1;
-      meshRef.current.position.z += 0.1;
-    }
+    meshRef.current.position.y = THREE.MathUtils.lerp(
+      meshRef.current.position.y,
+      props.isMoved ? -4 : 0,
+      0.1
+    );
+    meshRef.current.position.z = THREE.MathUtils.lerp(
+      meshRef.current.position.z,
+      props.isMoved ? -4 : 0,
+      0.1
+    );
   });
 
   const isPivot = props.isPivot && "#3A9CB0";
