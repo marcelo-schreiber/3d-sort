@@ -1,39 +1,29 @@
-<br />
-<p align="center">
-    <img src="https://cdn.discordapp.com/attachments/685226653764550671/1037925934344445962/screen-recording.gif" alt="Demonstration" width="550px">
-  <p align="center">
-    A 3D sorting algorithm Progressive Web App (PWA).
-      <a href="https://www.3dsort.com.br/" target="_blank" rel="noreferrer">
-  </a>
-    <br />
-    <a href="https://3dsort.marcelo-schreiber.com/" target="_blank" rel="noreferrer"><strong>Try it out »</strong></a>
-    <br />
-    <br />
-    <a href="#getting-started">Getting Started</a>
-    ·
-    <a href="https://github.com/marcelo-schreiber/3d-sort/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/marcelo-schreiber/3d-sort/issues">Request Feature</a>
-  </p>
-</p>
+# 3D Sort
 
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+<div align="center">
+
+![Demonstration](github/demo.gif)
+
+A 3D sorting algorithm Progressive Web App (PWA).
+
+[**Try it out »**](https://3dsort.marcelo-schreiber.com/)
+
+[Getting Started](#getting-started) · [Report Bug](https://github.com/marcelo-schreiber/3d-sort/issues) · [Request Feature](https://github.com/marcelo-schreiber/3d-sort/issues)
+
+</div>
+
+## Table of Contents
+
+1. [About The Project](#about-the-project)
+   - [Built With](#built-with)
+2. [Getting Started](#getting-started)
+3. [Contributing](#contributing)
+4. [License](#license)
+5. [Contact](#contact)
 
 ## About The Project
+
+[![GitHub license](https://img.shields.io/github/license/marcelo-schreiber/3d-sort)](https://github.com/marcelo-schreiber/3d-sort/blob/main/LICENSE)
 
 This project helps users understand how sorting algorithms work in a visual and interactive way. It supports offline usage thanks to PWA technology and lets users control the speed of animations to match their learning pace.
 
@@ -55,13 +45,13 @@ This project helps users understand how sorting algorithms work in a visual and 
 
 ### Built With
 
-* [React](https://reactjs.org/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Three.js](https://threejs.org/)
-* [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) by [Poimandres](https://github.com/pmndrs)
-* [Vite](https://vitejs.dev/)
-* [Vite PWA Plugin](https://vite-pwa-org.netlify.app/)
-* [React Icons](https://react-icons.github.io/react-icons/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Three.js](https://threejs.org/)
+- [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) by [Poimandres](https://github.com/pmndrs)
+- [Vite](https://vitejs.dev/)
+- [Vite PWA Plugin](https://vite-pwa-org.netlify.app/)
+- [React Icons](https://react-icons.github.io/react-icons/)
 
 ## Getting Started
 
@@ -85,16 +75,10 @@ Contributions make the open source community amazing. Any contributions you make
 4. Push to the branch (`git push origin feature`)
 5. Open a Pull Request
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
 ## Contact
 
 - Discord: Losaeg#1619  
-- Email: marcelorissette15@gmail.com  
+- Email: <marcelorissette15@gmail.com>  
 - Project Link: [https://github.com/marcelo-schreiber/3d-sort](https://github.com/marcelo-schreiber/3d-sort)
 
----
-
-##### Made with <3 by Marcelo Schreiber
+### Made with <3 by Marcelo Schreiber
