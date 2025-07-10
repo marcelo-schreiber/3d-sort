@@ -10,27 +10,32 @@ function* partition(arr: number[], start: number, before: number): any {
 
   if (length <= 1) return;
 
-  /** Randomly select a pivot and move it to the head of the array  */
-  const pivotIndex = start + Math.floor(Math.random() * length);
-  [arr[start], arr[pivotIndex]] = [arr[pivotIndex], arr[start]];
-  yield { arr: arr, pivot: pivotIndex };
-  const pivot = arr[start];
+  // Use fixed pivot at start, no random
+  const pivotIndex = start;
+  const pivot = arr[pivotIndex];
   let pivotRank = start;
 
+  // Yield initial pivot selection (no swap needed)
+  yield { arr: [...arr], pivot: pivotIndex, swapped: false };
+
   for (let index = start + 1; index < before; index++) {
-    yield { arr: arr, idx: index, pivot: pivotRank };
+    yield { arr: [...arr], idx: index, idx2: pivotRank, pivot: pivotRank, swapped: false };
+
     if (arr[index] < pivot) {
       pivotRank++;
+      // Swap elements and yield swapped state
       [arr[index], arr[pivotRank]] = [arr[pivotRank], arr[index]];
+      yield { arr: [...arr], idx: index, idx2: pivotRank, pivot: pivotRank, swapped: true };
     }
   }
 
+  // Finally swap pivot into its correct place if needed
   if (pivotRank !== start) {
     [arr[pivotRank], arr[start]] = [arr[start], arr[pivotRank]];
-    yield { arr: arr, pivot: pivotRank };
+    yield { arr: [...arr], idx: start, idx2: pivotRank, pivot: pivotRank, swapped: true };
   }
 
+  // Recursive calls
   yield* partition(arr, start, pivotRank);
-
   yield* partition(arr, pivotRank + 1, before);
 }

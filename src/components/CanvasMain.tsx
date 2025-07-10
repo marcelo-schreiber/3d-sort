@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 // THREE components
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
@@ -121,21 +122,37 @@ function CanvasMain() {
         camera={{ fov: 90, position: [0, 0, 12] }}
         className="cursor-grab"
       >
-        <ambientLight intensity={3}/>
+        <ambientLight intensity={3} />
         <pointLight position={[10, 10, 10]} />
-        {array.map((h: number, idx: number) => (
-          <Box
-            height={h}
-            key={`${idx} + ${h}`}
-            position={[-array.length + 2 * idx, 0, 0]}
-            isMoved={boxes.idx === idx || boxes?.idx2 === idx}
-            isPivot={boxes.pivot === idx}
-          />
-        ))}
-        <OrbitControls
-          enablePan={false}
-          enableZoom={true}
-        />
+        {array.map((h: number, idx: number) => {
+          const isActive = boxes.idx === idx || boxes.idx2 === idx;
+
+          // Positions for animation only if active, else fixed
+          const startPos = isActive
+            ? new THREE.Vector3(-array.length + 2 * idx, 0, 0)
+            : new THREE.Vector3(-array.length + 2 * idx, 0, 0);
+
+          const endPos = isActive
+            ? idx === boxes.idx
+              ? new THREE.Vector3(-array.length + 2 * boxes.idx2, 0, 0)
+              : new THREE.Vector3(-array.length + 2 * boxes.idx, 0, 0)
+            : startPos; // no movement if not active
+
+          return (
+            <Box
+              height={h}
+              key={`${idx} + ${h}`}
+              position={[-array.length + 2 * idx, 0, 0]}
+              startPos={startPos}
+              endPos={endPos}
+              isMoved={isActive}
+              isPivot={boxes.pivot === idx}
+              isSwapped={isActive && boxes.swapped === true}
+            />
+          );
+        })}
+
+        <OrbitControls enablePan={false} enableZoom={true} />
       </Canvas>
       <div className="text-slate-800 text-lg text-center">
         <code>{JSON.stringify(array, null, 2)}</code>
