@@ -121,7 +121,7 @@ function CanvasMain() {
         camera={{ fov: 90, position: [0, 0, 12] }}
         className="cursor-grab"
       >
-        <ambientLight />
+        <ambientLight intensity={3}/>
         <pointLight position={[10, 10, 10]} />
         {array.map((h: number, idx: number) => (
           <Box
