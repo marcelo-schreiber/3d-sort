@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import CanvasMain from "./components/CanvasMain";
+import CanvasMain from "@/components/CanvasMain";
 
 import "./index.css";
 

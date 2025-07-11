@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
-// THREE components
+
+// THREE
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 // algorithms
-import bubbleSort from "../../utils/sort/bubblesort";
-import insertionSort from "../../utils/sort/insertionsort";
-import selectionSort from "../../utils/sort/selectionsort";
-import mergeSort from "../../utils/sort/mergesort";
-import heapSort from "../../utils/sort/heapsort";
-import quickSort from "../../utils/sort/quicksort";
+import bubbleSort from "@/utils/sort/bubblesort";
+import insertionSort from "@/utils/sort/insertionsort";
+import selectionSort from "@/utils/sort/selectionsort";
+import mergeSort from "@/utils/sort/mergesort";
+import heapSort from "@/utils/sort/heapsort";
+import quickSort from "@/utils/sort/quicksort";
 
-import shuffle from "../../utils/shuffle";
-import findMaxValue from "../../utils/findMaxValue";
+import shuffle from "@/utils/shuffle";
+import findMaxValue from "@/utils/findMaxValue";
 
 // my components
 import Box from "./box";
@@ -28,7 +29,7 @@ import {
   BsSkipForward,
   BsSkipBackward,
 } from "react-icons/bs";
-import { useLanguage } from "../../utils/hooks/useLanguage";
+import { useLanguage } from "@/utils/hooks/useLanguage";
 
 function SortCanvas({ array, boxes }: { array: number[]; boxes: any }) {
   return (
