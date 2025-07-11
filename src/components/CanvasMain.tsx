@@ -28,132 +28,122 @@ import {
   BsSkipForward,
   BsSkipBackward,
 } from "react-icons/bs";
+import { useLanguage } from "../../utils/hooks/useLanguage";
 
-// language
-import en from "../../languages/en.json";
-import pt from "../../languages/pt-BR.json";
+function SortCanvas({ array, boxes }: { array: number[]; boxes: any }) {
+  return (
+    <Canvas
+      camera={{ fov: 70, position: [0, 0, 12] }}
+      className="cursor-grab min-h-96"
+    >
+      <ambientLight intensity={3} />
+      <pointLight position={[10, 10, 10]} />
+      {array.map((h, idx) => {
+        const isActive = boxes.idx === idx || boxes.idx2 === idx;
+        const startPos = new THREE.Vector3(-array.length + 2 * idx, 0, 0);
+        const endPos = isActive
+          ? idx === boxes.idx
+            ? new THREE.Vector3(-array.length + 2 * boxes.idx2, 0, 0)
+            : new THREE.Vector3(-array.length + 2 * boxes.idx, 0, 0)
+          : startPos;
+        return (
+          <Box
+            height={h}
+            key={`${idx}-${h}`}
+            position={[-array.length + 2 * idx, 0, 0]}
+            startPos={startPos}
+            endPos={endPos}
+            isMoved={isActive}
+            isPivot={boxes.pivot === idx}
+            isSwapped={isActive && boxes.swapped === true}
+          />
+        );
+      })}
+      <OrbitControls enablePan={false} enableZoom={true} />
+    </Canvas>
+  );
+}
 
-const acceleration = 50;
+const SPEEDS = [0.5, 0.7, 1, 1.5, 2, 5, 10, 20];
+const BASE_DELAY = 1000; // Base delay of 1 second at 1x speed
+
+const ALG_MAP = {
+  "Bubble sort": bubbleSort,
+  "Insertion sort": insertionSort,
+  "Selection sort": selectionSort,
+  "Merge sort": mergeSort,
+  "Quick sort": quickSort,
+  "Heap sort": heapSort,
+};
 
 function CanvasMain() {
+  const langJson = useLanguage();
   const [generator, setGenerator] = useState(
     bubbleSort(shuffle([1, 2, 3, 4, 5, 6, 7]))
   );
   const [sortingState, setSortingState] = useState(() => generator.next());
   const [currentAlg, setCurrentAlg] = useState("Bubble sort");
   const [play, setPlay] = useState(false);
-  const [delay, setDelay] = useState(1000);
+  const [speedIndex, setSpeedIndex] = useState(2); // Start at 1x speed (index 2)
 
   const sort = () => !sortingState.done && setSortingState(generator.next());
-
-  const language = navigator.language || "en";
-  const langJson = language === "pt-BR" ? pt : en;
 
   const boxes = sortingState.value;
   let { arr: array } = sortingState.value;
 
+  // Calculate current delay based on speed multiplier
+  const currentDelay = BASE_DELAY / SPEEDS[speedIndex];
+
   useEffect(() => {
-    const timer = setTimeout(() => sort(), delay); // default 1000ms delay
+    const timer = setTimeout(() => sort(), currentDelay);
 
     if (!play) clearTimeout(timer);
     if (sortingState.done) setPlay(false);
     return () => clearTimeout(timer);
-  }, [sortingState, play]);
+  }, [sortingState, play, speedIndex]);
 
   const speedUp = () => {
-    if (delay <= acceleration) return; // fastest possible delay -= acc => 0 (0ms delay impossible)
-    setDelay((prev) => prev - acceleration);
+    if (speedIndex >= SPEEDS.length - 1) return; // Already at maximum speed
+    setSpeedIndex((prev) => prev + 1);
   };
 
   const slowDown = () => {
-    if (delay >= 2000) return; // 2 seconds will be the slowest delay possible
-    setDelay((prev) => prev + acceleration);
+    if (speedIndex <= 0) return; // Already at minimum speed
+    setSpeedIndex((prev) => prev - 1);
   };
 
-  const setAlgorithm = () => {
-    let newGenerator = bubbleSort(array);
+  useEffect(() => {
+    setGeneratorFromAlg(array);
+  }, [currentAlg]);
 
-    switch (currentAlg) {
-      case "Insertion sort":
-        newGenerator = insertionSort(array);
-        break;
-      case "Selection sort":
-        newGenerator = selectionSort(array);
-        break;
-      case "Merge sort":
-        newGenerator = mergeSort(array);
-        break;
-      case "Quick sort":
-        newGenerator = quickSort(array);
-        break;
-      case "Heap sort":
-        console.log("heap sort");
-        newGenerator = heapSort(array);
-        break;
-    }
-
-    setGenerator(newGenerator);
-    setSortingState(newGenerator.next());
-  };
-
-  useEffect(setAlgorithm, [currentAlg]);
-
-  const addItem = () => {
-    array = [...array, array.length + 1];
-
-    setAlgorithm();
+  const setGeneratorFromAlg = (arr: number[]) => {
+    const sortFn = ALG_MAP[currentAlg as keyof typeof ALG_MAP] || bubbleSort;
+    const newGen = sortFn(arr);
+    setGenerator(newGen);
+    setSortingState(newGen.next());
   };
 
   const removeItem = () => {
     if (array.length <= 5) return;
+    const newArr = [...array];
+    newArr.splice(findMaxValue(newArr), 1);
+    setGeneratorFromAlg(newArr);
+  };
 
-    array.splice(findMaxValue(array), 1);
-    setAlgorithm();
+  const addItem = () => {
+    const newArr = [...array, array.length + 1];
+    setGeneratorFromAlg(newArr);
   };
 
   const randomize = () => {
-    array = shuffle(array);
-    setAlgorithm();
+    const newArr = shuffle([...array]);
+    setGeneratorFromAlg(newArr);
   };
 
   return (
-    <div style={{ height: "62vh", width: "100%" }}>
-      <Canvas
-        camera={{ fov: 90, position: [0, 0, 12] }}
-        className="cursor-grab"
-      >
-        <ambientLight intensity={3} />
-        <pointLight position={[10, 10, 10]} />
-        {array.map((h: number, idx: number) => {
-          const isActive = boxes.idx === idx || boxes.idx2 === idx;
+    <div className="w-full h-[calc(100vh-24rem)]">
+      <SortCanvas array={array} boxes={boxes} />
 
-          // Positions for animation only if active, else fixed
-          const startPos = isActive
-            ? new THREE.Vector3(-array.length + 2 * idx, 0, 0)
-            : new THREE.Vector3(-array.length + 2 * idx, 0, 0);
-
-          const endPos = isActive
-            ? idx === boxes.idx
-              ? new THREE.Vector3(-array.length + 2 * boxes.idx2, 0, 0)
-              : new THREE.Vector3(-array.length + 2 * boxes.idx, 0, 0)
-            : startPos; // no movement if not active
-
-          return (
-            <Box
-              height={h}
-              key={`${idx} + ${h}`}
-              position={[-array.length + 2 * idx, 0, 0]}
-              startPos={startPos}
-              endPos={endPos}
-              isMoved={isActive}
-              isPivot={boxes.pivot === idx}
-              isSwapped={isActive && boxes.swapped === true}
-            />
-          );
-        })}
-
-        <OrbitControls enablePan={false} enableZoom={true} />
-      </Canvas>
       <div className="text-slate-800 text-lg text-center">
         <code>{JSON.stringify(array, null, 2)}</code>
       </div>
@@ -194,14 +184,14 @@ function CanvasMain() {
       </div>
       <nav>
         <h2 className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center">
-          {langJson.velocity}: {Number((1 / delay) * 1000).toFixed(2)}
+          {langJson.velocity}: {SPEEDS[speedIndex]}x
         </h2>
         <div className="w-full flex justify-center align-center">
           <button
             onClick={slowDown}
-            disabled={delay >= 2000}
+            disabled={speedIndex <= 0}
             className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l ${
-              delay >= 2000 && "bg-slate-200"
+              speedIndex <= 0 && "bg-slate-200"
             }`}
           >
             <BsSkipBackward />
@@ -222,9 +212,9 @@ function CanvasMain() {
           </button>
           <button
             onClick={speedUp}
-            disabled={delay <= acceleration}
+            disabled={speedIndex >= SPEEDS.length - 1}
             className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l ${
-              delay <= acceleration && "bg-slate-200"
+              speedIndex >= SPEEDS.length - 1 && "bg-slate-200"
             }`}
           >
             <BsSkipForward />
@@ -243,12 +233,11 @@ function CanvasMain() {
             setCurrentAlg(e.target.value)
           }
         >
-          <option value="Bubble sort">Bubble sort</option>
-          <option value="Insertion sort">Insertion sort</option>
-          <option value="Selection sort">Selection sort</option>
-          <option value="Merge sort">Merge sort</option>
-          <option value="Heap sort">Heap sort</option>
-          <option value="Quick sort">Quick sort</option>
+          {Object.keys(ALG_MAP).map((alg) => (
+            <option key={alg} value={alg}>
+              {alg}
+            </option>
+          ))}
         </select>
       </nav>
       <h1 className="text-lg text-slate-800 text-center mt-6">
