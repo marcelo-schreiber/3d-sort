@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-
-// THREE
-import * as THREE from "three";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { SortCanvas } from "./SortCanvas";
 
 // algorithms
 import bubbleSort from "@/utils/sort/bubblesort";
@@ -17,7 +13,6 @@ import shuffle from "@/utils/shuffle";
 import findMaxValue from "@/utils/findMaxValue";
 
 // my components
-import Box from "./box";
 import {
   BsShuffle,
   BsForward,
@@ -30,40 +25,6 @@ import {
   BsSkipBackward,
 } from "react-icons/bs";
 import { useLanguage } from "@/utils/hooks/useLanguage";
-
-function SortCanvas({ array, boxes }: { array: number[]; boxes: any }) {
-  return (
-    <Canvas
-      camera={{ fov: 70, position: [0, 0, 12] }}
-      className="cursor-grab min-h-96"
-    >
-      <ambientLight intensity={3} />
-      <pointLight position={[10, 10, 10]} />
-      {array.map((h, idx) => {
-        const isActive = boxes.idx === idx || boxes.idx2 === idx;
-        const startPos = new THREE.Vector3(-array.length + 2 * idx, 0, 0);
-        const endPos = isActive
-          ? idx === boxes.idx
-            ? new THREE.Vector3(-array.length + 2 * boxes.idx2, 0, 0)
-            : new THREE.Vector3(-array.length + 2 * boxes.idx, 0, 0)
-          : startPos;
-        return (
-          <Box
-            height={h}
-            key={`${idx}-${h}`}
-            position={[-array.length + 2 * idx, 0, 0]}
-            startPos={startPos}
-            endPos={endPos}
-            isMoved={isActive}
-            isPivot={boxes.pivot === idx}
-            isSwapped={isActive && boxes.swapped === true}
-          />
-        );
-      })}
-      <OrbitControls enablePan={false} enableZoom={true} />
-    </Canvas>
-  );
-}
 
 const SPEEDS = [0.5, 0.7, 1, 1.5, 2, 5, 10, 20];
 const BASE_DELAY = 1000; // Base delay of 1 second at 1x speed
@@ -90,7 +51,7 @@ function CanvasMain() {
   const sort = () => !sortingState.done && setSortingState(generator.next());
 
   const boxes = sortingState.value;
-  let { arr: array } = sortingState.value;
+  const array = boxes?.arr || [];
 
   // Calculate current delay based on speed multiplier
   const currentDelay = BASE_DELAY / SPEEDS[speedIndex];
