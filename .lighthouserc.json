@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "url": ["http://localhost:4173"],
-      "startServerCommand": "yarn preview",
+      "startServerCommand": "npm run preview",
       "startServerReadyPattern": "Local:.*:4173"
     },
     "assert": {

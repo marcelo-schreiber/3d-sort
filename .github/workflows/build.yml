@@ -18,11 +18,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20.x
-        cache: 'npm install'
-        cache-dependency-path: 'package-lock.json
+        cache: 'npm'
+        cache-dependency-path: 'package-lock.json'
         
     - name: Install dependencies
-      run: npm install --frozen-lockfile
+      run: npm ci
       
     - name: Run tests
       run: npm run test:run
@@ -50,11 +50,11 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20.x
-        cache: 'npm install'
-        cache-dependency-path: 'package-lock.json
+        cache: 'npm'
+        cache-dependency-path: 'package-lock.json'
         
     - name: Install dependencies
-      run: npm install --frozen-lockfile
+      run: npm ci
       
     - name: Build application
       run: npm run build

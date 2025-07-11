@@ -20,8 +20,12 @@ A 3D sorting algorithm Progressive Web App (PWA).
 3. [How to Test](#how-to-test)
    - [Running Tests](#running-tests)
    - [Test Coverage](#test-coverage)
-4. [Contributing](#contributing)
-5. [Contact](#contact)
+4. [CI/CD Pipeline](#cicd-pipeline)
+   - [Automated Testing](#automated-testing)
+   - [Build Validation](#build-validation)
+   - [Quality Gates](#quality-gates)
+5. [Contributing](#contributing)
+6. [Contact](#contact)
 
 ## About The Project
 
@@ -59,11 +63,11 @@ This project helps users understand how sorting algorithms work in a visual and 
 
 ## Getting Started
 
-### `yarn`
+### `npm install`
 
 Installs all necessary dependencies.
 
-### `yarn dev`
+### `npm run dev`
 
 Starts the app in development mode.
 
@@ -120,42 +124,53 @@ All tests ensure both mathematical correctness and proper 3D visualization data 
 
 ## CI/CD Pipeline
 
-This project uses GitHub Actions for continuous integration and deployment:
+This project uses GitHub Actions for continuous integration and deployment with comprehensive testing and quality assurance:
 
 ### Automated Testing
 
-- **Test Workflow**: Runs on every push and pull request
-- **Multi-Node Testing**: Tests against Node.js 18.x and 20.x
-- **Coverage Reports**: Generates and uploads test coverage to Codecov
-- **TypeScript Validation**: Ensures code compiles without errors
+- **Test Workflow** (`test.yml`): Runs on every push and pull request
+  - **Multi-Node Testing**: Tests against Node.js 18.x and 20.x
+  - **Comprehensive Test Suite**: Runs the full test suite with 82+ tests
+  - **Coverage Reports**: Generates and uploads test coverage to Codecov
+  - **TypeScript Validation**: Ensures code compiles without errors
+  - **Separate Jobs**: `test`, `lint`, and `test-coverage` for parallel execution
 
 ### Build Validation
 
-- **Build Workflow**: Validates that the application builds successfully
-- **Lighthouse CI**: Performance and accessibility testing on pull requests
-- **Artifact Storage**: Saves build outputs for review
+- **Build Workflow** (`build.yml`): Validates application build and performance
+  - **Build Verification**: Ensures the application builds successfully
+  - **Lighthouse CI**: Performance, accessibility, and PWA testing on pull requests
+  - **Artifact Storage**: Saves build outputs and test results for review
+  - **Performance Thresholds**:
+    - Performance: ≥80% (warning)
+    - Accessibility: ≥90% (error)
+    - Best Practices: ≥80% (warning)
+    - SEO: ≥80% (warning)
+    - PWA: ≥80% (warning)
 
 ### Quality Gates
 
-- All tests must pass before merging
-- TypeScript compilation must succeed
-- Build must complete successfully
-- Lighthouse performance thresholds must be met
+- ✅ All tests must pass before merging (82+ tests across all algorithms)
+- ✅ TypeScript compilation must succeed
+- ✅ Build must complete successfully  
+- ✅ Lighthouse performance thresholds must be met
+- ✅ Code coverage tracking via Codecov integration
 
 ### Workflows
 
 ```text
 .github/workflows/
-├── ci.yml          # Main CI status check
-├── test.yml        # Comprehensive test suite
-└── build.yml       # Build validation and Lighthouse
+├── test.yml        # Comprehensive test suite with multi-node testing
+└── build.yml       # Build validation and Lighthouse performance testing
 ```
 
-**Status Badges:**
+**Key Features:**
 
-- Tests run automatically on push/PR
-- Coverage tracking via Codecov integration
-- Build status visible in pull requests
+- **npm-based**: All workflows use npm with proper `package-lock.json` caching
+- **Parallel Execution**: Tests run on multiple Node.js versions simultaneously
+- **Performance Monitoring**: Lighthouse CI ensures optimal user experience
+- **Coverage Tracking**: Codecov integration with detailed test coverage reports
+- **Artifact Management**: Build outputs and test results preserved for debugging
 
 ## Contributing
 
