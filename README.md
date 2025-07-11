@@ -17,13 +17,17 @@ A 3D sorting algorithm Progressive Web App (PWA).
 1. [About The Project](#about-the-project)
    - [Built With](#built-with)
 2. [Getting Started](#getting-started)
-3. [Contributing](#contributing)
-4. [License](#license)
+3. [How to Test](#how-to-test)
+   - [Running Tests](#running-tests)
+   - [Test Coverage](#test-coverage)
+4. [Contributing](#contributing)
 5. [Contact](#contact)
 
 ## About The Project
 
 [![GitHub license](https://img.shields.io/github/license/marcelo-schreiber/3d-sort)](https://github.com/marcelo-schreiber/3d-sort/blob/main/LICENSE)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0df0640d-32b2-47e8-b9be-015a8818b9d6/deploy-status)](https://app.netlify.com/projects/3dsort/deploys)
 
 This project helps users understand how sorting algorithms work in a visual and interactive way. It supports offline usage thanks to PWA technology and lets users control the speed of animations to match their learning pace.
 
@@ -64,6 +68,53 @@ Installs all necessary dependencies.
 Starts the app in development mode.
 
 The page will automatically reload if you make edits.
+
+## How to Test
+
+This project includes a comprehensive test suite with 82+ tests covering sorting algorithm correctness, edge cases, and visualization data validation.
+
+### Running Tests
+
+```bash
+# Run tests in watch mode (interactive)
+npm run test
+
+# Run tests once and exit
+npm run test:run
+
+# Run tests with UI (browser-based test runner)
+npm run test:ui
+```
+
+### Test Coverage
+
+The test suite includes:
+
+#### **Sorting Algorithm Tests (48 tests)**
+
+- **Correctness validation** for all 6 algorithms
+- **Edge cases**: empty arrays, single elements, sorted/reverse sorted data, duplicates, negative numbers
+- **Generator behavior**: ensures proper step-by-step data for 3D visualization
+
+#### **Utility Function Tests (15 tests)**
+
+- `findMaxValue`: maximum value detection
+- `shuffle`: array randomization with element preservation
+
+#### **Visualization Data Tests (4 tests)**
+
+- Array length consistency throughout sorting
+- Element preservation (no data loss)
+- Valid index bounds checking
+- Proper animation state indicators
+
+#### **Advanced Edge Cases (6 tests)**
+
+- Large arrays (100+ elements)
+- Extreme values (MAX_SAFE_INTEGER/MIN_SAFE_INTEGER)
+- Floating-point number handling
+- Two-element arrays
+- Arrays with identical elements
 
 ## Contributing
 
