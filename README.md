@@ -184,7 +184,6 @@ Contributions make the open source community amazing. Any contributions you make
 
 ## Contact
 
-- Discord: Losaeg#1619  
 - Email: <marcelorissette15@gmail.com>  
 - Project Link: [https://github.com/marcelo-schreiber/3d-sort](https://github.com/marcelo-schreiber/3d-sort)
 
