@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@react-spring/three": "^10.0.1",
@@ -28,6 +29,7 @@
     "@types/react-dom": "^19.1.0",
     "@types/three": "^0.178.0",
     "@vitejs/plugin-react": "^4.6.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
     "autoprefixer": "^10.4.21",
     "jsdom": "^26.1.0",

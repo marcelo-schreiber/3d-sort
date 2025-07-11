@@ -1,0 +1,64 @@
+name: CI Status
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  ci-status:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [test, build]
+    
+    steps:
+    - name: Check CI Status
+      run: |
+        if [[ "${{ needs.test.result }}" == "success" && "${{ needs.build.result }}" == "success" ]]; then
+          echo "✅ All CI checks passed!"
+          exit 0
+        else
+          echo "❌ Some CI checks failed!"
+          echo "Test result: ${{ needs.test.result }}"
+          echo "Build result: ${{ needs.build.result }}"
+          exit 1
+        fi
+
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'yarn'
+        
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Run tests
+      run: yarn test:run
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'yarn'
+        
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Build application
+      run: yarn build

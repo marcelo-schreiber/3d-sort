@@ -116,6 +116,47 @@ The test suite includes:
 - Two-element arrays
 - Arrays with identical elements
 
+All tests ensure both mathematical correctness and proper 3D visualization data generation for the sorting animations.
+
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+### Automated Testing
+
+- **Test Workflow**: Runs on every push and pull request
+- **Multi-Node Testing**: Tests against Node.js 18.x and 20.x
+- **Coverage Reports**: Generates and uploads test coverage to Codecov
+- **TypeScript Validation**: Ensures code compiles without errors
+
+### Build Validation
+
+- **Build Workflow**: Validates that the application builds successfully
+- **Lighthouse CI**: Performance and accessibility testing on pull requests
+- **Artifact Storage**: Saves build outputs for review
+
+### Quality Gates
+
+- All tests must pass before merging
+- TypeScript compilation must succeed
+- Build must complete successfully
+- Lighthouse performance thresholds must be met
+
+### Workflows
+
+```text
+.github/workflows/
+├── ci.yml          # Main CI status check
+├── test.yml        # Comprehensive test suite
+└── build.yml       # Build validation and Lighthouse
+```
+
+**Status Badges:**
+
+- Tests run automatically on push/PR
+- Coverage tracking via Codecov integration
+- Build status visible in pull requests
+
 ## Contributing
 
 Contributions make the open source community amazing. Any contributions you make are **greatly appreciated**.
