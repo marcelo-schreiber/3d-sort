@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Demonstration](github/demo.gif)
+![Demonstration](public/demo.gif)
 
 A 3D sorting algorithm Progressive Web App (PWA).
 
