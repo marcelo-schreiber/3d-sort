@@ -111,13 +111,13 @@ function CanvasMain() {
       </div>
       <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
         <button
-          className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l flex items-center"
+          className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded flex items-center"
           onClick={randomize}
         >
           {langJson.shuffle} <BsShuffle className="ml-2" />
         </button>
         <button
-          className={`bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded-l flex items-center ${
+          className={`bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center ${
             array.length <= 5 && "bg-slate-200"
           }`}
           onClick={removeItem}
@@ -127,7 +127,7 @@ function CanvasMain() {
           <BsPatchMinus className="ml-2" />
         </button>
         <button
-          className="bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded-l flex items-center"
+          className="bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center"
           onClick={addItem}
         >
           {langJson.add} <BsPatchPlus className="ml-2" />
@@ -136,7 +136,7 @@ function CanvasMain() {
         <button
           onClick={sort}
           disabled={sortingState.done}
-          className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l flex items-center ${
+          className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded flex items-center ${
             sortingState.done && "bg-slate-200"
           }`}
         >
@@ -152,7 +152,7 @@ function CanvasMain() {
           <button
             onClick={slowDown}
             disabled={speedIndex <= 0}
-            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l ${
+            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded ${
               speedIndex <= 0 && "bg-slate-200"
             }`}
           >
@@ -160,7 +160,7 @@ function CanvasMain() {
           </button>
           <button
             onClick={() => setPlay((prev) => !prev)}
-            className="bg-slate-300 hover:bg-slate-400 mx-4 w-28 text-slate-800 font-bold py-2 px-4 rounded-l "
+            className="bg-slate-300 hover:bg-slate-400 mx-4 w-28 text-slate-800 font-bold py-2 px-4 rounded "
           >
             {play ? (
               <span className="flex items-center justify-center">
@@ -175,7 +175,7 @@ function CanvasMain() {
           <button
             onClick={speedUp}
             disabled={speedIndex >= SPEEDS.length - 1}
-            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded-l ${
+            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded ${
               speedIndex >= SPEEDS.length - 1 && "bg-slate-200"
             }`}
           >

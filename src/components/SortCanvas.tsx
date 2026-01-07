@@ -1,7 +1,5 @@
 import {
-  ContactShadows,
   OrbitControls,
-  PresentationControls,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
@@ -53,16 +51,6 @@ export function SortCanvas({ array, boxes }: { array: number[]; boxes: TBox }) {
           />
         );
       })}
-      {array.map((_, idx) => (
-        <ContactShadows
-          key={idx}
-          position={[0, -(maxHeight / 2) - 2, 0]}
-          scale={array.length * 4}
-          opacity={0.09}
-          blur={0.4}
-          far={maxHeight}
-        />
-      ))}
     </Canvas>
   );
 }
