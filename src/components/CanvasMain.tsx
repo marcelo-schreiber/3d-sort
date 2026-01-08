@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { SortCanvas } from "./SortCanvas";
 
 // algorithms
@@ -24,7 +25,6 @@ import {
   BsSkipForward,
   BsSkipBackward,
 } from "react-icons/bs";
-import { useLanguage } from "@/utils/hooks/useLanguage";
 
 const SPEEDS = [0.5, 0.7, 1, 1.5, 2, 5, 10, 20];
 const BASE_DELAY = 1000; // Base delay of 1 second at 1x speed
@@ -39,9 +39,9 @@ const ALG_MAP = {
 };
 
 function CanvasMain() {
-  const langJson = useLanguage();
+  const { t } = useTranslation();
   const [generator, setGenerator] = useState(
-    bubbleSort(shuffle([1, 2, 3, 4, 5, 6, 7]))
+    bubbleSort(shuffle([1, 2, 3, 4, 5, 6, 7])),
   );
   const [sortingState, setSortingState] = useState(() => generator.next());
   const [currentAlg, setCurrentAlg] = useState("Bubble sort");
@@ -114,7 +114,7 @@ function CanvasMain() {
           className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded flex items-center"
           onClick={randomize}
         >
-          {langJson.shuffle} <BsShuffle className="ml-2" />
+          {t("shuffle")} <BsShuffle className="ml-2" />
         </button>
         <button
           className={`bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center ${
@@ -123,14 +123,14 @@ function CanvasMain() {
           onClick={removeItem}
           disabled={array.length <= 5}
         >
-          {langJson.remove}
+          {t("remove")}
           <BsPatchMinus className="ml-2" />
         </button>
         <button
           className="bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center"
           onClick={addItem}
         >
-          {langJson.add} <BsPatchPlus className="ml-2" />
+          {t("add")} <BsPatchPlus className="ml-2" />
         </button>
 
         <button
@@ -140,13 +140,13 @@ function CanvasMain() {
             sortingState.done && "bg-slate-200"
           }`}
         >
-          {langJson.next_step}
+          {t("next_step")}
           <BsForward className="ml-2" />
         </button>
       </div>
       <nav>
         <h2 className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center">
-          {langJson.velocity}: {SPEEDS[speedIndex]}x
+          {t("velocity")}: {SPEEDS[speedIndex]}x
         </h2>
         <div className="w-full flex justify-center align-center">
           <button
@@ -168,7 +168,7 @@ function CanvasMain() {
               </span>
             ) : (
               <span className="flex items-center justify-center">
-                {langJson.start} <BsPlay className="ml-2" />
+                {t("start")} <BsPlay className="ml-2" />
               </span>
             )}
           </button>
@@ -186,7 +186,7 @@ function CanvasMain() {
           htmlFor="selectAlg"
           className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center"
         >
-          <BsSortDownAlt className="mr-2" /> {langJson.choose_an_algorithm}
+          <BsSortDownAlt className="mr-2" /> {t("choose_an_algorithm")}
         </label>
         <select
           id="selectAlg"
@@ -203,7 +203,7 @@ function CanvasMain() {
         </select>
       </nav>
       <h1 className="text-lg text-slate-800 text-center mt-6">
-        {langJson.array_prefix} <b>{array.length}</b> {langJson.array_suffix}
+        {t("array_prefix")} <b>{array.length}</b> {t("array_suffix")}
       </h1>
     </div>
   );

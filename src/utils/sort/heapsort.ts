@@ -36,7 +36,6 @@ export default function* heapSort(arr: number[]) {
     yield { arr: [...arr], idx: 0, idx2: i, pivot: i, swapped: false };
 
     maxHeapify(arr, i, 0);
-
   }
 
   return { arr: [...arr], idx: -1, idx2: -1, pivot: -1, swapped: false };

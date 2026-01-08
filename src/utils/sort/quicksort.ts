@@ -19,20 +19,38 @@ function* partition(arr: number[], start: number, before: number): any {
   yield { arr: [...arr], pivot: pivotIndex, swapped: false };
 
   for (let index = start + 1; index < before; index++) {
-    yield { arr: [...arr], idx: index, idx2: pivotRank, pivot: pivotRank, swapped: false };
+    yield {
+      arr: [...arr],
+      idx: index,
+      idx2: pivotRank,
+      pivot: pivotRank,
+      swapped: false,
+    };
 
     if (arr[index] < pivot) {
       pivotRank++;
       // Swap elements and yield swapped state
       [arr[index], arr[pivotRank]] = [arr[pivotRank], arr[index]];
-      yield { arr: [...arr], idx: index, idx2: pivotRank, pivot: pivotRank, swapped: true };
+      yield {
+        arr: [...arr],
+        idx: index,
+        idx2: pivotRank,
+        pivot: pivotRank,
+        swapped: true,
+      };
     }
   }
 
   // Finally swap pivot into its correct place if needed
   if (pivotRank !== start) {
     [arr[pivotRank], arr[start]] = [arr[start], arr[pivotRank]];
-    yield { arr: [...arr], idx: start, idx2: pivotRank, pivot: pivotRank, swapped: true };
+    yield {
+      arr: [...arr],
+      idx: start,
+      idx2: pivotRank,
+      pivot: pivotRank,
+      swapped: true,
+    };
   }
 
   // Recursive calls

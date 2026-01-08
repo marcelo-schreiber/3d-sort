@@ -152,7 +152,7 @@ This project uses GitHub Actions for continuous integration and deployment with 
 
 - ✅ All tests must pass before merging (82+ tests across all algorithms)
 - ✅ TypeScript compilation must succeed
-- ✅ Build must complete successfully  
+- ✅ Build must complete successfully
 - ✅ Lighthouse performance thresholds must be met
 - ✅ Code coverage tracking via Codecov integration
 
@@ -184,7 +184,7 @@ Contributions make the open source community amazing. Any contributions you make
 
 ## Contact
 
-- Email: <marcelorissette15@gmail.com>  
+- Email: <marcelorissette15@gmail.com>
 - Project Link: [https://github.com/marcelo-schreiber/3d-sort](https://github.com/marcelo-schreiber/3d-sort)
 
 ### Made with <3 by Marcelo Schreiber

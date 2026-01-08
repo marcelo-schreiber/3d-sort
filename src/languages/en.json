@@ -5,6 +5,7 @@
   "array_suffix": " elements",
   "shuffle": "Shuffle",
   "start": "Start",
+  "pause": "Pause",
   "remove": "Remove",
   "add": "Add",
   "next_step": "Next step"

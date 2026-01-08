@@ -1,5 +1,5 @@
 {
-  "name": "3d-project",
+  "name": "3d-sort",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,8 +16,10 @@
     "@react-spring/three": "^10.0.3",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
+    "i18next": "^25.7.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "react-i18next": "^16.5.1",
     "react-icons": "^5.5.0",
     "three": "^0.178.0"
   },
@@ -36,7 +38,7 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
-    "vite": "^7.3.0",
+    "vite": "^7.3.1",
     "vite-plugin-pwa": "^1.2.0",
     "vitest": "^3.2.4"
   }

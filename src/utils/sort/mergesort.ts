@@ -1,7 +1,7 @@
 export default function* mergeSort(
   arr: number[],
   i = 0,
-  j = arr.length - 1
+  j = arr.length - 1,
 ): any {
   const middle = Math.floor((j - i) / 2) + i;
 
@@ -25,7 +25,7 @@ export function* merge(
   arr: number[],
   i: number,
   middle: number,
-  j: number
+  j: number,
 ): any {
   let left = i;
   let right = middle + 1;
