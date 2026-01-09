@@ -148,14 +148,6 @@ This project uses GitHub Actions for continuous integration and deployment with 
     - SEO: ≥80% (warning)
     - PWA: ≥80% (warning)
 
-### Quality Gates
-
-- ✅ All tests must pass before merging (82+ tests across all algorithms)
-- ✅ TypeScript compilation must succeed
-- ✅ Build must complete successfully
-- ✅ Lighthouse performance thresholds must be met
-- ✅ Code coverage tracking via Codecov integration
-
 ### Workflows
 
 ```text
@@ -163,14 +155,6 @@ This project uses GitHub Actions for continuous integration and deployment with 
 ├── test.yml        # Comprehensive test suite with multi-node testing
 └── build.yml       # Build validation and Lighthouse performance testing
 ```
-
-**Key Features:**
-
-- **npm-based**: All workflows use npm with proper `package-lock.json` caching
-- **Parallel Execution**: Tests run on multiple Node.js versions simultaneously
-- **Performance Monitoring**: Lighthouse CI ensures optimal user experience
-- **Coverage Tracking**: Codecov integration with detailed test coverage reports
-- **Artifact Management**: Build outputs and test results preserved for debugging
 
 ## Contributing
 
@@ -187,4 +171,3 @@ Contributions make the open source community amazing. Any contributions you make
 - Email: <marcelorissette15@gmail.com>
 - Project Link: [https://github.com/marcelo-schreiber/3d-sort](https://github.com/marcelo-schreiber/3d-sort)
 
-### Made with <3 by Marcelo Schreiber
