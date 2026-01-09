@@ -106,18 +106,18 @@ function CanvasMain() {
     <div className="w-full h-[calc(100vh-24rem)]">
       <SortCanvas array={array} boxes={boxes} />
 
-      <div className="text-slate-800 text-lg text-center">
+      <div className="text-slate-800 font-bold text-xl text-center">
         <code>{JSON.stringify(array, null, 2)}</code>
       </div>
       <div className="flex flex-wrap w-full gap-y-4 items-center justify-around absolute top-5">
         <button
-          className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded flex items-center"
+          className="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded flex items-center border-0 cursor-pointer"
           onClick={randomize}
         >
           {t("shuffle")} <BsShuffle className="ml-2" />
         </button>
         <button
-          className={`bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center ${
+          className={`bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center border-0 cursor-pointer ${
             array.length <= 5 && "bg-slate-200"
           }`}
           onClick={removeItem}
@@ -127,7 +127,7 @@ function CanvasMain() {
           <BsPatchMinus className="ml-2" />
         </button>
         <button
-          className="bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center"
+          className="bg-slate-300 px-4 hover:bg-slate-400 text-slate-800 font-bold py-2 rounded flex items-center  border-0 cursor-pointer"
           onClick={addItem}
         >
           {t("add")} <BsPatchPlus className="ml-2" />
@@ -136,7 +136,7 @@ function CanvasMain() {
         <button
           onClick={sort}
           disabled={sortingState.done}
-          className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded flex items-center ${
+          className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded flex items-center border-0 cursor-pointer ${
             sortingState.done && "bg-slate-200"
           }`}
         >
@@ -152,7 +152,7 @@ function CanvasMain() {
           <button
             onClick={slowDown}
             disabled={speedIndex <= 0}
-            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded ${
+            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded border-0 cursor-pointer ${
               speedIndex <= 0 && "bg-slate-200"
             }`}
           >
@@ -160,7 +160,7 @@ function CanvasMain() {
           </button>
           <button
             onClick={() => setPlay((prev) => !prev)}
-            className="bg-slate-300 hover:bg-slate-400 mx-4 w-28 text-slate-800 font-bold py-2 px-4 rounded "
+            className="bg-slate-300 hover:bg-slate-400 mx-4 w-28 text-slate-800 font-bold py-2 px-4 rounded border-0 cursor-pointer"
           >
             {play ? (
               <span className="flex items-center justify-center">
@@ -175,7 +175,7 @@ function CanvasMain() {
           <button
             onClick={speedUp}
             disabled={speedIndex >= SPEEDS.length - 1}
-            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded ${
+            className={`bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold py-2 px-4 rounded border-0 cursor-pointer ${
               speedIndex >= SPEEDS.length - 1 && "bg-slate-200"
             }`}
           >
@@ -184,13 +184,13 @@ function CanvasMain() {
         </div>
         <label
           htmlFor="selectAlg"
-          className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center"
+          className="text-slate-800 font-semibold text-2xl my-8 flex items-center justify-center border-0 cursor-pointer"
         >
           <BsSortDownAlt className="mr-2" /> {t("choose_an_algorithm")}
         </label>
         <select
           id="selectAlg"
-          className="flex mx-auto bg-slate-50 border border-slate-300 text-slate-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4"
+          className="flex mx-auto bg-slate-50 border-slate-300 border text-slate-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 px-4 cursor-pointer"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
             setCurrentAlg(e.target.value)
           }
