@@ -12,40 +12,48 @@ type TBox = {
 };
 
 export function SortCanvas({ array, boxes }: { array: number[]; boxes: TBox }) {
-  const maxHeight = Math.max(...array);
   return (
     <Canvas
-      camera={{
-        fov: 45,
-        position: [0, 4, 20],
-        near: 0.1,
-        far: 2000,
-      }}
+      camera={{ fov: 55, position: [0, 6, 14], near: 0.1, far: 2000 }}
       className="cursor-grab min-h-96"
       shadows
     >
-      <ambientLight intensity={3} />
-      <pointLight position={[10, 10, 10]} />
+      <fog attach="fog" args={["#0b0b15", 5, 70]} />
 
-      <OrbitControls enablePan={false} enableZoom={true} />
+      <ambientLight intensity={1.5} />
+
+      <directionalLight
+        position={[5, 10, 5]}
+        intensity={2}
+        castShadow
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
+
+      <pointLight position={[-10, 5, -5]} intensity={0.6} castShadow />
+      <OrbitControls enablePan={false} enableZoom />
+
       {array.map((h, idx) => {
-        const isActive = boxes?.idx === idx || boxes?.idx2 === idx;
-        const startPos = new THREE.Vector3(-array.length + 2 * idx, 0, 0);
-        const endPos = isActive
-          ? idx === boxes.idx
-            ? new THREE.Vector3(-array.length + 2 * boxes.idx2, 0, 0)
-            : new THREE.Vector3(-array.length + 2 * boxes.idx, 0, 0)
-          : startPos;
+        const isA = boxes.idx === idx;
+        const isB = boxes.idx2 === idx;
+        const isActive = isA || isB;
+
+        const baseX = -array.length + 2 * idx;
+        const swapX = isA
+          ? -array.length + 2 * boxes.idx2
+          : isB
+          ? -array.length + 2 * boxes.idx
+          : baseX;
+
         return (
           <Box
-            height={h}
             key={`${idx}-${h}`}
-            position={[-array.length + 2 * idx, 4, 0]}
-            startPos={startPos}
-            endPos={endPos}
+            height={h}
+            startPos={new THREE.Vector3(baseX, 0, 0)}
+            endPos={new THREE.Vector3(swapX, 0, 0)}
             isMoved={isActive}
+            isSwapped={boxes.swapped === true}
             isPivot={boxes.pivot === idx}
-            isSwapped={isActive && boxes.swapped === true}
           />
         );
       })}

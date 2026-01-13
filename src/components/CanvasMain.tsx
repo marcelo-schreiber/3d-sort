@@ -41,7 +41,7 @@ const ALG_MAP = {
 function CanvasMain() {
   const { t } = useTranslation();
   const [generator, setGenerator] = useState(
-    bubbleSort(shuffle([1, 2, 3, 4, 5, 6, 7])),
+    bubbleSort(shuffle([1, 2, 3, 4, 5, 6, 7]))
   );
   const [sortingState, setSortingState] = useState(() => generator.next());
   const [currentAlg, setCurrentAlg] = useState("Bubble sort");
