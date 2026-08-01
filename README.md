@@ -90,37 +90,6 @@ npm run test:run
 npm run test:ui
 ```
 
-### Test Coverage
-
-The test suite includes:
-
-#### **Sorting Algorithm Tests (48 tests)**
-
-- **Correctness validation** for all 6 algorithms
-- **Edge cases**: empty arrays, single elements, sorted/reverse sorted data, duplicates, negative numbers
-- **Generator behavior**: ensures proper step-by-step data for 3D visualization
-
-#### **Utility Function Tests (15 tests)**
-
-- `findMaxValue`: maximum value detection
-- `shuffle`: array randomization with element preservation
-
-#### **Visualization Data Tests (4 tests)**
-
-- Array length consistency throughout sorting
-- Element preservation (no data loss)
-- Valid index bounds checking
-- Proper animation state indicators
-
-#### **Advanced Edge Cases (6 tests)**
-
-- Large arrays (100+ elements)
-- Extreme values (MAX_SAFE_INTEGER/MIN_SAFE_INTEGER)
-- Floating-point number handling
-- Two-element arrays
-- Arrays with identical elements
-
-All tests ensure both mathematical correctness and proper 3D visualization data generation for the sorting animations.
 
 ## CI/CD Pipeline
 
@@ -135,18 +104,6 @@ This project uses GitHub Actions for continuous integration and deployment with 
   - **TypeScript Validation**: Ensures code compiles without errors
   - **Separate Jobs**: `test`, `lint`, and `test-coverage` for parallel execution
 
-### Build Validation
-
-- **Build Workflow** (`build.yml`): Validates application build and performance
-  - **Build Verification**: Ensures the application builds successfully
-  - **Lighthouse CI**: Performance, accessibility, and PWA testing on pull requests
-  - **Artifact Storage**: Saves build outputs and test results for review
-  - **Performance Thresholds**:
-    - Performance: ≥80% (warning)
-    - Accessibility: ≥90% (error)
-    - Best Practices: ≥80% (warning)
-    - SEO: ≥80% (warning)
-    - PWA: ≥80% (warning)
 
 ### Workflows
 
